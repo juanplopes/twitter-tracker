@@ -65,8 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TwitterParser_WhoAre_Tests.cs" />
-    <Compile Include="TwitterParser_Followers_Tests.cs" />
+    <Compile Include="Unit\DifferencesAnalyzerTests.cs" />
+    <Compile Include="Unit\TwitterParser_WhoAre_Tests.cs" />
+    <Compile Include="Unit\TwitterParser_Followers_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

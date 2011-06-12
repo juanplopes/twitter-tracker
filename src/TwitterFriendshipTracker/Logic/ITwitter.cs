@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-namespace TwitterFriendshipTracker
+namespace TwitterFriendshipTracker.Logic
 {
     public interface ITwitter
     {

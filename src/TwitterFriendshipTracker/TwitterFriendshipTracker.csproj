@@ -50,12 +50,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITwitter.cs" />
+    <Compile Include="Logic\DifferencesAnalyzer.cs" />
+    <Compile Include="Logic\Extensions.cs" />
+    <Compile Include="Logic\ITwitter.cs" />
+    <Compile Include="Logic\ITwitterParser.cs" />
+    <Compile Include="Logic\UserHistory.cs" />
+    <Compile Include="Logic\UserHistoryEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwitterAPI.cs" />
-    <Compile Include="TwitterParser.cs" />
-    <Compile Include="UserProfile.cs" />
+    <Compile Include="Logic\TwitterAPI.cs" />
+    <Compile Include="Logic\TwitterParser.cs" />
+    <Compile Include="Logic\UserProfile.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
