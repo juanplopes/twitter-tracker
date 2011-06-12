@@ -23,6 +23,7 @@ namespace TwitterFriendshipTracker.Logic
 
         public IEnumerable<UserHistoryEntry> Entries { get { return entries; } }
         public IEnumerable<long> LastCall { get { return lastCall; } }
+        public string User { get { return user; } }
 
         private bool InitIfNever(ITwitterParser parser)
         {

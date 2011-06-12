@@ -44,11 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="HistoryEntryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="HistoryEntryForm.Designer.cs">
+      <DependentUpon>HistoryEntryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Infra\HistoryLoader.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\DifferencesAnalyzer.cs" />
     <Compile Include="Logic\Extensions.cs" />
@@ -61,6 +68,12 @@
     <Compile Include="Logic\TwitterAPI.cs" />
     <Compile Include="Logic\TwitterParser.cs" />
     <Compile Include="Logic\UserProfile.cs" />
+    <EmbeddedResource Include="HistoryEntryForm.resx">
+      <DependentUpon>HistoryEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

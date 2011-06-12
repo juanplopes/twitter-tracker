@@ -9,16 +9,24 @@ namespace TwitterFriendshipTracker.Logic
     public struct UserHistoryEntry
     {
         public DateTime Date { get; private set; }
-        public IList<UserProfile> NewFollowers { get; private set; }
-        public IList<UserProfile> LostFollowers { get; private set; }
-        
-        public bool SomethingHappened { get { return NewFollowers.Count > 0 || LostFollowers.Count > 0; } }
+
+        IList<UserProfile> newFollowers;
+        IList<UserProfile> lostFollowers;
+
+        public IEnumerable<UserProfile> NewFollowers { get { return newFollowers; } }
+        public IEnumerable<UserProfile> LostFollowers { get { return lostFollowers; } }
+
+        public int NewFollowersCount { get { return newFollowers.Count; } }
+        public int LostFollowersCount { get { return lostFollowers.Count; } }
+        public bool HasNewFolloers { get { return NewFollowersCount > 0; } }
+        public bool HasLostFollowers { get { return LostFollowersCount > 0; } }
+        public bool SomethingHappened { get { return HasNewFolloers || HasLostFollowers; } }
 
         public UserHistoryEntry(DateTime date, IList<UserProfile> newFollowers, IList<UserProfile> lostFollowers) : this()
         {
             this.Date = date;
-            this.NewFollowers = newFollowers;
-            this.LostFollowers = lostFollowers;
+            this.newFollowers = newFollowers;
+            this.lostFollowers = lostFollowers;
         }
     }
 }
