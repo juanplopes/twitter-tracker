@@ -8,27 +8,23 @@ namespace TwitterFriendshipTracker.Logic
     [Serializable]
     public class UserHistory
     {
-        [NonSerialized]
-        ITwitterParser parser;
-        [NonSerialized]
-        DifferencesAnalyzer analyzer;
-
         string user;
         IList<UserHistoryEntry> entries;
         IList<long> lastCall;
 
-        protected UserHistory() : this(TwitterParser.Default, null) { }
-        public UserHistory(ITwitterParser parser, string user) : this(parser, user, null, null) { }
-        public UserHistory(ITwitterParser parser, string user, IList<UserHistoryEntry> entries, IList<long> lastCall)
+        public UserHistory(string user) : this(user, null, null) { }
+        public UserHistory(string user, IList<UserHistoryEntry> entries, IList<long> lastCall)
         {
-            this.parser = parser;
             this.user = user;
             this.entries = entries ?? new List<UserHistoryEntry>();
             this.lastCall = lastCall;
-            this.analyzer = new DifferencesAnalyzer(parser);
         }
 
-        private bool InitIfNever()
+
+        public IEnumerable<UserHistoryEntry> Entries { get { return entries; } }
+        public IEnumerable<long> LastCall { get { return lastCall; } }
+
+        private bool InitIfNever(ITwitterParser parser)
         {
             if (lastCall == null)
             {
@@ -38,15 +34,13 @@ namespace TwitterFriendshipTracker.Logic
             else return false;
         }
 
-        public IEnumerable<UserHistoryEntry> Entries { get { return entries; } }
-        public IEnumerable<long> LastCall { get { return lastCall; } }
-        public UserHistoryEntry Update(DateTime date)
+        public UserHistoryEntry Update(ITwitterParser parser, DateTime date)
         {
-            if (InitIfNever())
+            if (InitIfNever(parser))
                 return new UserHistoryEntry(date, new UserProfile[0], new UserProfile[0]);
 
             var followers = parser.FollowersFor(user).ToList();
-            var result = Analyze(date, followers);
+            var result = Analyze(parser, date, followers);
 
             if (result.SomethingHappened)
                 entries.Add(result);
@@ -54,9 +48,9 @@ namespace TwitterFriendshipTracker.Logic
             return result;
         }
 
-        private UserHistoryEntry Analyze(DateTime date, List<long> followers)
+        private UserHistoryEntry Analyze(ITwitterParser parser, DateTime date, List<long> followers)
         {
-            var result = analyzer.Analyze(date, lastCall, followers);
+            var result = new DifferencesAnalyzer(parser).Analyze(date, lastCall, followers);
             lastCall = followers;
             return result;
         }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TwitterFriendshipTracker.Logic
 {
+    [Serializable]
     public class DifferencesAnalyzer
     {
         ITwitterParser parser;

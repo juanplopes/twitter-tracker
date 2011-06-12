@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TwitterFriendshipTracker.Logic
 {
+    [Serializable]
     public struct UserHistoryEntry
     {
         public DateTime Date { get; private set; }
