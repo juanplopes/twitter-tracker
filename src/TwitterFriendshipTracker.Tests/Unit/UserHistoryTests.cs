@@ -24,7 +24,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var date = new DateTime(2001, 9, 11);
             var result = history.Update(date);
 
-            result.NothingHappened.Should().Be.True();
+            result.SomethingHappened.Should().Be.False();
 
             history.LastCall.Should().Have.SameSequenceAs(1, 2, 3);
             history.Entries.Should().Be.Empty();
@@ -47,7 +47,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             result.NewFollowers.Should().Have.SameSequenceAs(new[] { new UserProfile(4, "4", "4L") });
             result.LostFollowers.Should().Be.Empty();
 
-            result.NothingHappened.Should().Be.False();
+            result.SomethingHappened.Should().Be.True();
 
             history.LastCall.Should().Have.SameSequenceAs(1, 2, 3, 4);
             history.Entries.Should().Have.SameSequenceAs(result);

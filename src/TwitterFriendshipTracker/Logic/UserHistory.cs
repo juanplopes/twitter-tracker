@@ -48,7 +48,7 @@ namespace TwitterFriendshipTracker.Logic
             var followers = parser.FollowersFor(user).ToList();
             var result = Analyze(date, followers);
 
-            if (!result.NothingHappened)
+            if (result.SomethingHappened)
                 entries.Add(result);
 
             return result;

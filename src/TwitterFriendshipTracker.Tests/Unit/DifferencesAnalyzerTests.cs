@@ -22,7 +22,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.Date.Should().Be(date);
             entry.NewFollowers.Should().Be.Empty();
             entry.LostFollowers.Should().Be.Empty();
-            entry.NothingHappened.Should().Be.True();
+            entry.SomethingHappened.Should().Be.False();
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.Date.Should().Be(date);
             entry.NewFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
             entry.LostFollowers.Should().Be.Empty();
-            entry.NothingHappened.Should().Be.False();
+            entry.SomethingHappened.Should().Be.True();
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.Date.Should().Be(date);
             entry.NewFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
             entry.LostFollowers.Should().Be.Empty();
-            entry.NothingHappened.Should().Be.False();
+            entry.SomethingHappened.Should().Be.True();
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.Date.Should().Be(date);
             entry.NewFollowers.Should().Be.Empty();
             entry.LostFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
-            entry.NothingHappened.Should().Be.False();
+            entry.SomethingHappened.Should().Be.True();
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.Date.Should().Be(date);
             entry.NewFollowers.Should().Be.Empty();
             entry.LostFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
-            entry.NothingHappened.Should().Be.False();
+            entry.SomethingHappened.Should().Be.True();
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.Date.Should().Be(date);
             entry.NewFollowers.Should().Have.SameSequenceAs(new UserProfile(43, "43", "43L"));
             entry.LostFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
-            entry.NothingHappened.Should().Be.False();
+            entry.SomethingHappened.Should().Be.True();
         }
     }
 }

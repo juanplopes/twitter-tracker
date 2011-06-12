@@ -11,7 +11,7 @@ namespace TwitterFriendshipTracker.Logic
         public IList<UserProfile> NewFollowers { get; private set; }
         public IList<UserProfile> LostFollowers { get; private set; }
         
-        public bool NothingHappened { get { return NewFollowers.Count == 0 && LostFollowers.Count == 0; } }
+        public bool SomethingHappened { get { return NewFollowers.Count > 0 || LostFollowers.Count > 0; } }
 
         public UserHistoryEntry(DateTime date, IList<UserProfile> newFollowers, IList<UserProfile> lostFollowers) : this()
         {
