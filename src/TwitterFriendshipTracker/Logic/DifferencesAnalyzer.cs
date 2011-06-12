@@ -14,7 +14,7 @@ namespace TwitterFriendshipTracker.Logic
             this.parser = parser;
         }
 
-        public UserHistoryEntry Analyze(DateTime date, IEnumerable<long> before, IEnumerable<long> after)
+        public UserHistoryEntry Analyze(DateTime date, IList<long> before, IList<long> after)
         {
             var gainedIds = after.Except(before);
             var lostIds = before.Except(after);
@@ -24,7 +24,7 @@ namespace TwitterFriendshipTracker.Logic
             var gained = Separate(gainedIds, allProfiles);
             var lost = Separate(lostIds, allProfiles);
 
-            return new UserHistoryEntry(date, gained, lost);
+            return new UserHistoryEntry(date, gained, lost, after.Count);
         }
 
         private static UserProfile[] Separate(IEnumerable<long> gainedIds, ILookup<long, UserProfile> allProfiles)

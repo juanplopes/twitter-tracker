@@ -23,6 +23,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.NewFollowers.Should().Be.Empty();
             entry.LostFollowers.Should().Be.Empty();
             entry.SomethingHappened.Should().Be.False();
+            entry.FollowerCount.Should().Be(0);
         }
 
         [Test]
@@ -39,6 +40,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.NewFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
             entry.LostFollowers.Should().Be.Empty();
             entry.SomethingHappened.Should().Be.True();
+            entry.FollowerCount.Should().Be(1);
         }
 
         [Test]
@@ -55,6 +57,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.NewFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
             entry.LostFollowers.Should().Be.Empty();
             entry.SomethingHappened.Should().Be.True();
+            entry.FollowerCount.Should().Be(2);
         }
 
         [Test]
@@ -87,6 +90,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.NewFollowers.Should().Be.Empty();
             entry.LostFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
             entry.SomethingHappened.Should().Be.True();
+            entry.FollowerCount.Should().Be(1);
         }
 
         [Test]
@@ -106,6 +110,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             entry.NewFollowers.Should().Have.SameSequenceAs(new UserProfile(43, "43", "43L"));
             entry.LostFollowers.Should().Have.SameSequenceAs(new UserProfile(42, "42", "42L"));
             entry.SomethingHappened.Should().Be.True();
+            entry.FollowerCount.Should().Be(2);
         }
     }
 }

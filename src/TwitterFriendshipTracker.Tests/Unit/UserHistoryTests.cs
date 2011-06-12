@@ -27,6 +27,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var result = history.Update(parser.Object, date);
 
             result.SomethingHappened.Should().Be.False();
+            result.FollowerCount.Should().Be(3);
 
             history.LastCall.Should().Have.SameSequenceAs(1, 2, 3);
             history.Entries.Should().Be.Empty();
@@ -48,6 +49,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var result = history.Update(parser.Object, date);
             result.NewFollowers.Should().Have.SameSequenceAs(new[] { new UserProfile(4, "4", "4L") });
             result.LostFollowers.Should().Be.Empty();
+            result.FollowerCount.Should().Be(4);
 
             result.SomethingHappened.Should().Be.True();
 
@@ -59,7 +61,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
         [Test]
         public void should_be_serializable()
         {
-            var entries = new[] { new UserHistoryEntry(new DateTime(), new[] { new UserProfile(2, "", "") }, new UserProfile[0]) };
+            var entries = new[] { new UserHistoryEntry(new DateTime(), new[] { new UserProfile(2, "", "") }, new UserProfile[0], 0) };
             var history = new UserHistory("test", entries, new long[] { 1, 3, 4 });
 
             var formatter = new BinaryFormatter();

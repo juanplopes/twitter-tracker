@@ -15,21 +15,12 @@ namespace TwitterFriendshipTracker
         public HistoryEntryForm(UserHistoryEntry entry)
         {
             InitializeComponent();
-            entry = SetTitleLabel(entry);
+            
+            WhatHappenedLabel.Text = string.Format("Total followers: {0}", entry.FollowerCount);
+            NewFollowersLabel.Text = string.Format("New followers: {0}", entry.NewFollowersCount);
+            LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.LostFollowersCount);
         }
 
-        private UserHistoryEntry SetTitleLabel(UserHistoryEntry entry)
-        {
-            if (entry.HasNewFolloers && entry.HasLostFollowers)
-                WhatHappenedLabel.Text = string.Format("You've gained {0} and lost {1} followers", entry.NewFollowersCount, entry.LostFollowersCount);
-            else if (entry.HasNewFolloers)
-                WhatHappenedLabel.Text = string.Format("You've gained {0} followers", entry.NewFollowersCount);
-            else if (entry.HasLostFollowers)
-                WhatHappenedLabel.Text = string.Format("You've lost {0} followers", entry.LostFollowersCount);
-            else
-                WhatHappenedLabel.Text = "Nothing happened";
-            return entry;
-        }
 
     }
 }
