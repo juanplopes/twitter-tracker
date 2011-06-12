@@ -1,0 +1,44 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build"> 
+  <PropertyGroup> 
+    <BuildDir>$(MSBuildProjectDirectory)\build\</BuildDir>
+	<PackageDir>$(MSBuildProjectDirectory)\pkg\</PackageDir>
+	
+    <SourceDir>$(MSBuildProjectDirectory)\src\</SourceDir>
+    <Configuration>Release</Configuration>
+    <Platform>x86</Platform>
+  </PropertyGroup>
+
+  <Import Project="util\msbuild\MSBuild.Community.Tasks.Targets"/>
+
+  
+  <ItemGroup>
+    <SolutionFile Include="$(SourceDir)\TwitterFriendshipTracker.sln" />
+  </ItemGroup>
+  
+  <Target Name="Clean">
+    <MSBuild Projects="@(SolutionFile)" Targets="Clean" Properties="Configuration=$(Configuration);Platform=$(Platform);OutputPath=$(BuildDir)"/>
+    <DeleteTree Directories="$(BuildDir)" ContinueOnError="true"/>
+	<DeleteTree Directories="$(PackageDir)" ContinueOnError="true"/>
+  </Target>
+ 
+  <Target Name="Build">
+    <MSBuild Projects="@(SolutionFile)" Properties="Configuration=$(Configuration);Platform=$(Platform);OutputPath=$(BuildDir)"/>
+  </Target>
+
+  <Target Name="Rebuild">
+    <CallTarget Targets="Clean; Build"></CallTarget>
+  </Target>
+  
+  <Target Name="Package" DependsOnTargets="Rebuild">
+	<ItemGroup>
+      <ZipFiles Include="$(BuildDir)twitter-tracker.exe"/>
+    </ItemGroup>
+
+	<Copy SourceFiles ="@(ZipFiles)" DestinationFolder="$(PackageDir)" />
+    <Zip Files="@(ZipFiles)" ZipFileName="$(PackageDir)\twitter-tracker.zip" WorkingDirectory="$(BuildDir)" />
+  </Target>
+  
+  <Target Name="Test" DependsOnTargets="Build">
+    <Nunit Assemblies="$(BuildDir)\TwitterFriendshipTracker.Tests.dll" ToolPath="util\nunit"/>
+  </Target>
+</Project>
