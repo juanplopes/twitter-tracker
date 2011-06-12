@@ -9,7 +9,7 @@ namespace TwitterFriendshipTracker.Logic
 {
     public class TwitterParser : ITwitterParser
     {
-        private TwitterParser() { }
+        public static TwitterParser Default { get { return new TwitterParser(new TwitterAPI()); } }       
 
         ITwitter twitter;
         public TwitterParser(ITwitter twitter)

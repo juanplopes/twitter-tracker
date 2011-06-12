@@ -9,21 +9,56 @@ namespace TwitterFriendshipTracker.Logic
     public class UserHistory
     {
         [NonSerialized]
-        ITwitter twitter;
-        
-        string user;
-        IList<UserHistoryEntry> entries = new List<UserHistoryEntry>();
+        ITwitterParser parser;
+        [NonSerialized]
+        DifferencesAnalyzer analyzer;
 
-        protected UserHistory() : this(new TwitterAPI(), null) { }
-        public UserHistory(ITwitter twitter, string user)
+        string user;
+        IList<UserHistoryEntry> entries;
+        IList<long> lastCall;
+
+        protected UserHistory() : this(TwitterParser.Default, null) { }
+        public UserHistory(ITwitterParser parser, string user) : this(parser, user, null, null) { }
+        public UserHistory(ITwitterParser parser, string user, IList<UserHistoryEntry> entries, IList<long> lastCall)
         {
-            this.twitter = twitter;
+            this.parser = parser;
             this.user = user;
+            this.entries = entries ?? new List<UserHistoryEntry>();
+            this.lastCall = lastCall;
+            this.analyzer = new DifferencesAnalyzer(parser);
         }
 
+        private bool InitIfNever()
+        {
+            if (lastCall == null)
+            {
+                lastCall = parser.FollowersFor(user).ToList();
+                return true;
+            }
+            else return false;
+        }
+
+        public IEnumerable<UserHistoryEntry> Entries { get { return entries; } }
+        public IEnumerable<long> LastCall { get { return lastCall; } }
         public UserHistoryEntry Update(DateTime date)
         {
-            return new UserHistoryEntry();
+            if (InitIfNever())
+                return new UserHistoryEntry(date, new UserProfile[0], new UserProfile[0]);
+
+            var followers = parser.FollowersFor(user).ToList();
+            var result = Analyze(date, followers);
+
+            if (!result.NothingHappened)
+                entries.Add(result);
+
+            return result;
+        }
+
+        private UserHistoryEntry Analyze(DateTime date, List<long> followers)
+        {
+            var result = analyzer.Analyze(date, lastCall, followers);
+            lastCall = followers;
+            return result;
         }
 
     }

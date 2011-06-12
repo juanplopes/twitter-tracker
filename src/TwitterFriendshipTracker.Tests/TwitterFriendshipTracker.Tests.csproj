@@ -69,6 +69,7 @@
     <Compile Include="Unit\TwitterParser_WhoAre_Tests.cs" />
     <Compile Include="Unit\TwitterParser_Followers_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\UserHistoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TwitterFriendshipTracker\TwitterFriendshipTracker.csproj">
