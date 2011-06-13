@@ -31,11 +31,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.WhatHappenedLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.NewList = new System.Windows.Forms.ListBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.NewFollowersLabel = new System.Windows.Forms.Label();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.LostList = new System.Windows.Forms.ListBox();
             this.LostFollowersLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -81,21 +81,21 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(553, 356);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
-            // listBox1
+            // NewList
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.NewList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(3, 34);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(264, 316);
-            this.listBox1.TabIndex = 7;
+            this.NewList.FormattingEnabled = true;
+            this.NewList.Location = new System.Drawing.Point(3, 34);
+            this.NewList.Name = "NewList";
+            this.NewList.Size = new System.Drawing.Size(264, 316);
+            this.NewList.TabIndex = 7;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.NewFollowersLabel);
-            this.panel2.Controls.Add(this.listBox1);
+            this.panel2.Controls.Add(this.NewList);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
@@ -105,7 +105,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.LostFollowersLabel);
-            this.panel3.Controls.Add(this.listBox2);
+            this.panel3.Controls.Add(this.LostList);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(279, 3);
             this.panel3.Name = "panel3";
@@ -123,16 +123,16 @@
             this.NewFollowersLabel.TabIndex = 8;
             this.NewFollowersLabel.Text = "label1";
             // 
-            // listBox2
+            // LostList
             // 
-            this.listBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.LostList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(0, 34);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(268, 316);
-            this.listBox2.TabIndex = 8;
+            this.LostList.FormattingEnabled = true;
+            this.LostList.Location = new System.Drawing.Point(0, 34);
+            this.LostList.Name = "LostList";
+            this.LostList.Size = new System.Drawing.Size(268, 316);
+            this.LostList.TabIndex = 8;
             // 
             // LostFollowersLabel
             // 
@@ -173,9 +173,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label LostFollowersLabel;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox LostList;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label NewFollowersLabel;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox NewList;
     }
 }

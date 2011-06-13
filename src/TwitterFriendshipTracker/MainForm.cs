@@ -23,6 +23,7 @@ namespace TwitterFriendshipTracker
         {
             var history = loader.Load(UserInput.Text);
             new HistoryEntryForm(history.Update(TwitterParser.Default, DateTime.Now)).ShowDialog();
+            userHistoryEntryBindingSource.DataSource = history.Entries;
             loader.Save(history);
         }
     }

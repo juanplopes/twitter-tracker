@@ -19,6 +19,8 @@ namespace TwitterFriendshipTracker
             WhatHappenedLabel.Text = string.Format("Total followers: {0}", entry.FollowerCount);
             NewFollowersLabel.Text = string.Format("New followers: {0}", entry.NewFollowersCount);
             LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.LostFollowersCount);
+            NewList.DataSource = entry.NewFollowers;
+            LostList.DataSource = entry.LostFollowers;
         }
 
 

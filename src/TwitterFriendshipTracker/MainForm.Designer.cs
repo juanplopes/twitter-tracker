@@ -28,13 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.UserInput = new System.Windows.Forms.TextBox();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.ResultsGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.userHistoryEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.followerCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.newFollowersCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lostFollowersCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsGrid)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userHistoryEntryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // UserInput
@@ -67,7 +76,14 @@
             this.ResultsGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResultsGrid.AutoGenerateColumns = false;
             this.ResultsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ResultsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dateDataGridViewTextBoxColumn,
+            this.followerCountDataGridViewTextBoxColumn,
+            this.newFollowersCountDataGridViewTextBoxColumn,
+            this.lostFollowersCountDataGridViewTextBoxColumn});
+            this.ResultsGrid.DataSource = this.userHistoryEntryBindingSource;
             this.ResultsGrid.Location = new System.Drawing.Point(13, 87);
             this.ResultsGrid.Name = "ResultsGrid";
             this.ResultsGrid.Size = new System.Drawing.Size(485, 391);
@@ -94,6 +110,44 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Twitter Friendship Tracker";
             // 
+            // userHistoryEntryBindingSource
+            // 
+            this.userHistoryEntryBindingSource.DataSource = typeof(TwitterFriendshipTracker.Logic.UserHistoryEntry);
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // followerCountDataGridViewTextBoxColumn
+            // 
+            this.followerCountDataGridViewTextBoxColumn.DataPropertyName = "FollowerCount";
+            this.followerCountDataGridViewTextBoxColumn.HeaderText = "Followers";
+            this.followerCountDataGridViewTextBoxColumn.Name = "followerCountDataGridViewTextBoxColumn";
+            this.followerCountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // newFollowersCountDataGridViewTextBoxColumn
+            // 
+            this.newFollowersCountDataGridViewTextBoxColumn.DataPropertyName = "NewFollowersCount";
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.newFollowersCountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.newFollowersCountDataGridViewTextBoxColumn.HeaderText = "New";
+            this.newFollowersCountDataGridViewTextBoxColumn.Name = "newFollowersCountDataGridViewTextBoxColumn";
+            this.newFollowersCountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lostFollowersCountDataGridViewTextBoxColumn
+            // 
+            this.lostFollowersCountDataGridViewTextBoxColumn.DataPropertyName = "LostFollowersCount";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Maroon;
+            this.lostFollowersCountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.lostFollowersCountDataGridViewTextBoxColumn.HeaderText = "Lost";
+            this.lostFollowersCountDataGridViewTextBoxColumn.Name = "lostFollowersCountDataGridViewTextBoxColumn";
+            this.lostFollowersCountDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,6 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ResultsGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userHistoryEntryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,6 +176,11 @@
         private System.Windows.Forms.DataGridView ResultsGrid;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn followerCountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn newFollowersCountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lostFollowersCountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource userHistoryEntryBindingSource;
     }
 }
 
