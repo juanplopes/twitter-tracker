@@ -64,6 +64,14 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var entries = new[] { new UserHistoryEntry(new DateTime(), new[] { new UserProfile(2, "", "") }, new UserProfile[0], 0) };
             var history = new UserHistory("test", entries, new long[] { 1, 3, 4 });
 
+            var valueOf = RoundTrip(history);
+            
+            valueOf.Entries.Should().Not.Be.Empty();
+            valueOf.LastCall.Should().Not.Be.Empty();
+        }
+
+        public static T RoundTrip<T>(T history)
+        {
             var formatter = new BinaryFormatter();
             var memory = new MemoryStream();
 
@@ -72,10 +80,8 @@ namespace TwitterFriendshipTracker.Tests.Unit
             memory.Seek(0, SeekOrigin.Begin);
 
             var result = formatter.Deserialize(memory);
-            var valueOf = result.Should().Be.OfType<UserHistory>().And.ValueOf;
-            
-            valueOf.Entries.Should().Not.Be.Empty();
-            valueOf.LastCall.Should().Not.Be.Empty();
+            var valueOf = result.Should().Be.OfType<T>().And.ValueOf;
+            return valueOf;
         }
     }
 }

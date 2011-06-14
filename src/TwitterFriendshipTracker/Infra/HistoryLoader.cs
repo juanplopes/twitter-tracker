@@ -30,7 +30,7 @@ namespace TwitterFriendshipTracker.Infra
         {
             try
             {
-                using (var file = File.Create(history.User + ".history"))
+                using (var file = File.Create(history.Name + ".history"))
                 {
                     serializer.Serialize(file, history);
                 }

@@ -77,6 +77,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ResultsGrid.AutoGenerateColumns = false;
+            this.ResultsGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ResultsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ResultsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dateDataGridViewTextBoxColumn,
@@ -86,6 +87,7 @@
             this.ResultsGrid.DataSource = this.userHistoryEntryBindingSource;
             this.ResultsGrid.Location = new System.Drawing.Point(13, 87);
             this.ResultsGrid.Name = "ResultsGrid";
+            this.ResultsGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.ResultsGrid.Size = new System.Drawing.Size(485, 391);
             this.ResultsGrid.TabIndex = 2;
             // 
@@ -176,11 +178,11 @@
         private System.Windows.Forms.DataGridView ResultsGrid;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource userHistoryEntryBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn followerCountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn newFollowersCountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lostFollowersCountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource userHistoryEntryBindingSource;
     }
 }
 
