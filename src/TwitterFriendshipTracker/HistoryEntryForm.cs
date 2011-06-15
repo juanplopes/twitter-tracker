@@ -17,7 +17,7 @@ namespace TwitterFriendshipTracker
         {
             InitializeComponent();
             
-            WhatHappenedLabel.Text = string.Format("{0}, total followers: {1}", entry.Date, entry.FollowerCount);
+            WhatHappenedLabel.Text = string.Format("{0}, followers: {1}", entry.Date, entry.FollowerCount);
             NewFollowersLabel.Text = string.Format("New followers: {0}", entry.NewFollowersCount);
             LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.LostFollowersCount);
             NewList.DataSource = entry.NewFollowers;
@@ -28,6 +28,11 @@ namespace TwitterFriendshipTracker
         {
             var user = ((UserProfile)(sender as ListBox).SelectedItem).ScreenName;
             Process.Start(string.Format("http://twitter.com/{0}", user));
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
 

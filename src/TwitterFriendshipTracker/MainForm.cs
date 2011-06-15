@@ -38,10 +38,22 @@ namespace TwitterFriendshipTracker
 
         private void UpdateUser(UserHistory user)
         {
-            var entry = user.Update(parser, DateTime.Now);
-            loader.Save(history);
-            UpdateList();
-            new HistoryEntryForm(entry).ShowDialog();
+            try
+            {
+                Cursor = Cursors.WaitCursor;
+                var entry = user.Update(parser, DateTime.Now);
+                loader.Save(history);
+                UpdateList();
+                new HistoryEntryForm(entry).ShowDialog();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
 
         private UserHistory RefreshUserData()
@@ -76,6 +88,11 @@ namespace TwitterFriendshipTracker
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             loader.Save(history);
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
       
     }

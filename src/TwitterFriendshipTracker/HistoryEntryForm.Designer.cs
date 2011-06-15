@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.NewFollowersLabel = new System.Windows.Forms.Label();
             this.NewList = new System.Windows.Forms.ListBox();
+            this.CloseButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -46,6 +47,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Navy;
+            this.panel1.Controls.Add(this.CloseButton);
             this.panel1.Controls.Add(this.WhatHappenedLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -153,6 +155,20 @@
             this.NewList.TabIndex = 7;
             this.NewList.DoubleClick += new System.EventHandler(this.NewList_DoubleClick);
             // 
+            // CloseButton
+            // 
+            this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Font = new System.Drawing.Font("Webdings", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.CloseButton.ForeColor = System.Drawing.Color.White;
+            this.CloseButton.Location = new System.Drawing.Point(529, 5);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(36, 36);
+            this.CloseButton.TabIndex = 2;
+            this.CloseButton.Text = "r";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
             // HistoryEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,5 +202,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label NewFollowersLabel;
         private System.Windows.Forms.ListBox NewList;
+        private System.Windows.Forms.Button CloseButton;
     }
 }
