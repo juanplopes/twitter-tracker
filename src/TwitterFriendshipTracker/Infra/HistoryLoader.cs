@@ -5,32 +5,41 @@ using System.Text;
 using TwitterFriendshipTracker.Logic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Reflection;
 
 namespace TwitterFriendshipTracker.Infra
 {
     public class HistoryLoader
     {
+        private static string GetFileName()
+        {
+            return Assembly.GetExecutingAssembly().Location + ".history";
+        }
+
+
         BinaryFormatter serializer = new BinaryFormatter();
-        public UserHistory Load(string user)
+        public UserHistoryCollection Load()
         {
             try
             {
-                using (var file = File.OpenRead(user + ".history"))
+                using (var file = File.OpenRead(GetFileName()))
                 {
-                    return (UserHistory)serializer.Deserialize(file);
+                    return (UserHistoryCollection)serializer.Deserialize(file);
                 }
             }
             catch
             {
-                return new UserHistory(user);
+                return new UserHistoryCollection();
             }
         }
 
-        public void Save(UserHistory history)
+
+        public void Save(UserHistoryCollection history)
         {
             try
             {
-                using (var file = File.Create(history.Name + ".history"))
+                history.Collect();
+                using (var file = File.Create(GetFileName()))
                 {
                     serializer.Serialize(file, history);
                 }

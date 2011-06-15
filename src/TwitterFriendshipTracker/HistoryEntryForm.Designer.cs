@@ -31,16 +31,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.WhatHappenedLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.NewList = new System.Windows.Forms.ListBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.NewFollowersLabel = new System.Windows.Forms.Label();
-            this.LostList = new System.Windows.Forms.ListBox();
             this.LostFollowersLabel = new System.Windows.Forms.Label();
+            this.LostList = new System.Windows.Forms.ListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.NewFollowersLabel = new System.Windows.Forms.Label();
+            this.NewList = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -81,27 +81,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(553, 356);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
-            // NewList
-            // 
-            this.NewList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NewList.FormattingEnabled = true;
-            this.NewList.Location = new System.Drawing.Point(3, 34);
-            this.NewList.Name = "NewList";
-            this.NewList.Size = new System.Drawing.Size(264, 316);
-            this.NewList.TabIndex = 7;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.NewFollowersLabel);
-            this.panel2.Controls.Add(this.NewList);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(270, 350);
-            this.panel2.TabIndex = 0;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.LostFollowersLabel);
@@ -111,28 +90,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(271, 350);
             this.panel3.TabIndex = 1;
-            // 
-            // NewFollowersLabel
-            // 
-            this.NewFollowersLabel.AutoSize = true;
-            this.NewFollowersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewFollowersLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.NewFollowersLabel.Location = new System.Drawing.Point(-1, 5);
-            this.NewFollowersLabel.Name = "NewFollowersLabel";
-            this.NewFollowersLabel.Size = new System.Drawing.Size(60, 24);
-            this.NewFollowersLabel.TabIndex = 8;
-            this.NewFollowersLabel.Text = "label1";
-            // 
-            // LostList
-            // 
-            this.LostList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LostList.FormattingEnabled = true;
-            this.LostList.Location = new System.Drawing.Point(0, 34);
-            this.LostList.Name = "LostList";
-            this.LostList.Size = new System.Drawing.Size(268, 316);
-            this.LostList.TabIndex = 8;
             // 
             // LostFollowersLabel
             // 
@@ -145,6 +102,57 @@
             this.LostFollowersLabel.TabIndex = 9;
             this.LostFollowersLabel.Text = "label2";
             // 
+            // LostList
+            // 
+            this.LostList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LostList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LostList.FormattingEnabled = true;
+            this.LostList.IntegralHeight = false;
+            this.LostList.ItemHeight = 16;
+            this.LostList.Location = new System.Drawing.Point(0, 34);
+            this.LostList.Name = "LostList";
+            this.LostList.Size = new System.Drawing.Size(268, 316);
+            this.LostList.TabIndex = 8;
+            this.LostList.DoubleClick += new System.EventHandler(this.NewList_DoubleClick);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.NewFollowersLabel);
+            this.panel2.Controls.Add(this.NewList);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(270, 350);
+            this.panel2.TabIndex = 0;
+            // 
+            // NewFollowersLabel
+            // 
+            this.NewFollowersLabel.AutoSize = true;
+            this.NewFollowersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewFollowersLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.NewFollowersLabel.Location = new System.Drawing.Point(-1, 5);
+            this.NewFollowersLabel.Name = "NewFollowersLabel";
+            this.NewFollowersLabel.Size = new System.Drawing.Size(60, 24);
+            this.NewFollowersLabel.TabIndex = 8;
+            this.NewFollowersLabel.Text = "label1";
+            // 
+            // NewList
+            // 
+            this.NewList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NewList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewList.FormattingEnabled = true;
+            this.NewList.IntegralHeight = false;
+            this.NewList.ItemHeight = 16;
+            this.NewList.Location = new System.Drawing.Point(3, 34);
+            this.NewList.Name = "NewList";
+            this.NewList.Size = new System.Drawing.Size(264, 316);
+            this.NewList.TabIndex = 7;
+            this.NewList.DoubleClick += new System.EventHandler(this.NewList_DoubleClick);
+            // 
             // HistoryEntryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,14 +162,15 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "HistoryEntryForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "History Entry";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }

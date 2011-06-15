@@ -92,5 +92,23 @@ namespace TwitterFriendshipTracker.Tests.Unit
 
             twitter.VerifyAll();
         }
+
+        [Test]
+        public void cannot_parse_who_are_with_4_users_using_max_per_request_equals_1_and_max_requests_per_call_equals_3()
+        {
+            var twitter = new Mock<ITwitter>();
+            twitter.Setup(x => x.UserLookup(new long[] { 42 })).Returns(@"<users></users>");
+            twitter.Setup(x => x.UserLookup(new long[] { 43 })).Returns(@"<users></users>");
+            twitter.Setup(x => x.UserLookup(new long[] { 44 })).Returns(@"<users></users>");
+
+
+            var parser = new TwitterParser(twitter.Object, 3);
+
+            Executing.This(()=> {
+                parser.WhoAre(new long[] { 42, 43, 44, 45 }, 1).ToList();
+            }).Should().Throw<InvalidOperationException>();
+
+            twitter.VerifyAll();
+        }
     }
 }

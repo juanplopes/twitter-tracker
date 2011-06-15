@@ -69,5 +69,21 @@ namespace TwitterFriendshipTracker.Tests.Unit
             parser.FollowersFor("test").Should().Have.SameSequenceAs(123, 456, 123, 456, 123, 456);
             twitter.VerifyAll();
         }
+
+
+        [Test]
+        public void cannot_parse_list_with_2_more_cursors_if_the_max_request_is_2()
+        {
+            var twitter = new Mock<ITwitter>();
+            twitter.Setup(x => x.Followers("test", -1)).Returns(@"<ids><id>123</id><id>456</id><next_cursor>1234567</next_cursor></ids>");
+            twitter.Setup(x => x.Followers("test", 1234567)).Returns(@"<ids><id>123</id><id>456</id><next_cursor>1234568</next_cursor></ids>");
+
+            var parser = new TwitterParser(twitter.Object, 2);
+            Executing.This(() =>
+            {
+                parser.FollowersFor("test").ToArray();
+            }).Should().Throw<InvalidOperationException>();
+            twitter.VerifyAll();
+        }
     }
 }

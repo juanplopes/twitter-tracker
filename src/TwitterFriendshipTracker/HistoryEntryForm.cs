@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TwitterFriendshipTracker.Logic;
+using System.Diagnostics;
 
 namespace TwitterFriendshipTracker
 {
@@ -16,11 +17,17 @@ namespace TwitterFriendshipTracker
         {
             InitializeComponent();
             
-            WhatHappenedLabel.Text = string.Format("Total followers: {0}", entry.FollowerCount);
+            WhatHappenedLabel.Text = string.Format("{0}, total followers: {1}", entry.Date, entry.FollowerCount);
             NewFollowersLabel.Text = string.Format("New followers: {0}", entry.NewFollowersCount);
             LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.LostFollowersCount);
             NewList.DataSource = entry.NewFollowers;
             LostList.DataSource = entry.LostFollowers;
+        }
+
+        private void NewList_DoubleClick(object sender, EventArgs e)
+        {
+            var user = ((UserProfile)(sender as ListBox).SelectedItem).ScreenName;
+            Process.Start(string.Format("http://twitter.com/{0}", user));
         }
 
 

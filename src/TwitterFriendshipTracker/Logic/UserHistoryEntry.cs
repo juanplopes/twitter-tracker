@@ -9,6 +9,7 @@ namespace TwitterFriendshipTracker.Logic
     public struct UserHistoryEntry
     {
         public DateTime Date { get; private set; }
+        public string RelativeTime { get { return Date.RelativeTo(DateTime.Now); } }
 
         IList<UserProfile> newFollowers;
         IList<UserProfile> lostFollowers;

@@ -69,6 +69,7 @@
     <Compile Include="Logic\TwitterAPI.cs" />
     <Compile Include="Logic\TwitterParser.cs" />
     <Compile Include="Logic\UserProfile.cs" />
+    <Compile Include="Logic\Relative.cs" />
     <EmbeddedResource Include="HistoryEntryForm.resx">
       <DependentUpon>HistoryEntryForm.cs</DependentUpon>
     </EmbeddedResource>

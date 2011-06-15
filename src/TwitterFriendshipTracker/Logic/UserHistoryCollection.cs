@@ -10,21 +10,26 @@ namespace TwitterFriendshipTracker.Logic
     {
         Dictionary<string, UserHistory> users = new Dictionary<string, UserHistory>();
 
-        public IEnumerable<string> Users { get { return users.Keys; } }
+        public IEnumerable<string> Users { get { return users.Where(x => !x.Value.IsEmpty).Select(x => x.Key); } }
 
-        UserHistory lastHistory = null;
-        public UserHistory LastHistory { get { return lastHistory; } }
+        string lastUser = null;
+        public string LastUser { get { return lastUser; } }
+
+        public bool Remove(string user)
+        {
+            return users.Remove(NormalizeUsername(user));
+        }
 
         public UserHistory this[string user]
         {
             get
             {
-                user = NormalizeUsername(user);
-                
-                if (!users.TryGetValue(user, out lastHistory))
-                    return users[user] = lastHistory = new UserHistory(user);
+                lastUser = user = NormalizeUsername(user);
+                UserHistory history;
+                if (!users.TryGetValue(user, out history))
+                    return users[user] = history = new UserHistory(user);
 
-                return lastHistory;
+                return history;
             }
         }
 
@@ -38,7 +43,7 @@ namespace TwitterFriendshipTracker.Logic
         public IList<string> Collect()
         {
             var who = users.Values.Where(x => x.IsEmpty).Select(x => x.Name).ToList();
-            who.ForEach(x=>users.Remove(x));
+            who.ForEach(x => users.Remove(x));
             return who;
         }
     }

@@ -39,7 +39,7 @@ namespace TwitterFriendshipTracker.Logic
         public UserHistoryEntry Update(ITwitterParser parser, DateTime date)
         {
             if (InitIfNever(parser))
-                return new UserHistoryEntry(date, new UserProfile[0], new UserProfile[0], lastCall.Count);
+                return AddFirstEntry(date);
 
             var followers = parser.FollowersFor(user).ToList();
             var result = Analyze(parser, date, followers);
@@ -47,6 +47,13 @@ namespace TwitterFriendshipTracker.Logic
             if (result.SomethingHappened)
                 entries.Add(result);
 
+            return result;
+        }
+
+        private UserHistoryEntry AddFirstEntry(DateTime date)
+        {
+            var result = new UserHistoryEntry(date, new UserProfile[0], new UserProfile[0], lastCall.Count);
+            entries.Add(result);
             return result;
         }
 

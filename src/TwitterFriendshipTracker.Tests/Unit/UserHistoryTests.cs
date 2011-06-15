@@ -30,7 +30,7 @@ namespace TwitterFriendshipTracker.Tests.Unit
             result.FollowerCount.Should().Be(3);
 
             history.LastCall.Should().Have.SameSequenceAs(1, 2, 3);
-            history.Entries.Should().Be.Empty();
+            history.Entries.Should().Have.SameSequenceAs(result);
         }
 
         [Test]
@@ -45,18 +45,34 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var history = new UserHistory("test");
 
             var date = new DateTime(2001, 9, 11);
-            history.Update(parser.Object, date);
-            var result = history.Update(parser.Object, date);
-            result.NewFollowers.Should().Have.SameSequenceAs(new[] { new UserProfile(4, "4", "4L") });
-            result.LostFollowers.Should().Be.Empty();
-            result.FollowerCount.Should().Be(4);
+            var result1 = history.Update(parser.Object, date);
+            var result2 = history.Update(parser.Object, date);
+            result2.NewFollowers.Should().Have.SameSequenceAs(new[] { new UserProfile(4, "4", "4L") });
+            result2.LostFollowers.Should().Be.Empty();
+            result2.FollowerCount.Should().Be(4);
 
-            result.SomethingHappened.Should().Be.True();
+            result2.SomethingHappened.Should().Be.True();
 
             history.LastCall.Should().Have.SameSequenceAs(1, 2, 3, 4);
-            history.Entries.Should().Have.SameSequenceAs(result);
+            history.Entries.Should().Have.SameSequenceAs(result1, result2);
         }
 
+        [Test]
+        public void when_nothing_happen_no_new_history_is_created()
+        {
+            var parser = new Mock<ITwitterParser>();
+            parser.SetupSequence(x => x.FollowersFor("test"))
+                .Returns(new long[] { 1, 2, 3 })
+                .Returns(new long[] { 1, 2, 3 });
+
+            var history = new UserHistory("test");
+
+            var date = new DateTime(2001, 9, 11);
+            var result1 = history.Update(parser.Object, date);
+            var result2 = history.Update(parser.Object, date);
+
+            history.Entries.Should().Have.SameSequenceAs(result1);
+        }
 
         [Test]
         public void should_be_serializable()
@@ -65,7 +81,6 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var history = new UserHistory("test", entries, new long[] { 1, 3, 4 });
 
             var valueOf = RoundTrip(history);
-            
             valueOf.Entries.Should().Not.Be.Empty();
             valueOf.LastCall.Should().Not.Be.Empty();
         }

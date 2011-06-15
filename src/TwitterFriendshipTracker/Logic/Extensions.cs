@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace TwitterFriendshipTracker.Logic
 {
@@ -22,7 +23,6 @@ namespace TwitterFriendshipTracker.Logic
                         list = new List<T>(batchSize);
                     }
                 }
-
                 if (list.Any())
                     yield return list;
             }
