@@ -41,10 +41,12 @@ namespace TwitterFriendshipTracker
             try
             {
                 Cursor = Cursors.WaitCursor;
+                ResultsGrid.Visible = false;
                 var entry = user.Update(parser, DateTime.Now);
                 loader.Save(history);
                 UpdateList();
-                new HistoryEntryForm(entry).ShowDialog();
+                if (entry.SomethingHappened)
+                    new HistoryEntryForm(entry).ShowDialog();
             }
             catch (Exception e)
             {
@@ -52,6 +54,7 @@ namespace TwitterFriendshipTracker
             }
             finally
             {
+                ResultsGrid.Visible = true;
                 Cursor = Cursors.Default;
             }
         }
@@ -59,7 +62,7 @@ namespace TwitterFriendshipTracker
         private UserHistory RefreshUserData()
         {
             var user = history[UserInput.Text];
-            userHistoryEntryBindingSource.DataSource = user.Entries.OrderByDescending(x=>x.Date);
+            userHistoryEntryBindingSource.DataSource = user.Entries.OrderByDescending(x => x.Date);
             return user;
         }
 
@@ -94,6 +97,6 @@ namespace TwitterFriendshipTracker
         {
             this.Close();
         }
-      
+
     }
 }

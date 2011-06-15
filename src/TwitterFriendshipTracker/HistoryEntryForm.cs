@@ -21,7 +21,9 @@ namespace TwitterFriendshipTracker
             NewFollowersLabel.Text = string.Format("New followers: {0}", entry.NewFollowersCount);
             LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.LostFollowersCount);
             NewList.DataSource = entry.NewFollowers;
+            NewList.SelectedIndex = -1;
             LostList.DataSource = entry.LostFollowers;
+            LostList.SelectedIndex = -1;
         }
 
         private void NewList_DoubleClick(object sender, EventArgs e)

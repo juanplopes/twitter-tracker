@@ -39,12 +39,12 @@
             this.UpdateButton = new System.Windows.Forms.Button();
             this.ResultsGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.UserInput = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.RemoveButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.followerCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.newFollowersCountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,7 +113,6 @@
             this.ResultsGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ResultsGrid.RowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.ResultsGrid.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Empty;
             this.ResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ResultsGrid.Size = new System.Drawing.Size(485, 391);
             this.ResultsGrid.TabIndex = 2;
@@ -130,6 +129,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(510, 44);
             this.panel1.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Webdings", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(420, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(36, 36);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "i";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // CloseButton
             // 
@@ -170,6 +182,8 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.UserInput);
             this.panel2.Location = new System.Drawing.Point(13, 50);
@@ -189,19 +203,6 @@
             this.RemoveButton.Text = "remove";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Webdings", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(420, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 36);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "i";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // dateDataGridViewTextBoxColumn
             // 
