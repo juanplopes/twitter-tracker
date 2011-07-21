@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build"> 
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Integrate"> 
   <PropertyGroup> 
     <BuildDir>$(MSBuildProjectDirectory)\build\</BuildDir>
 	<PackageDir>$(MSBuildProjectDirectory)\pkg\</PackageDir>
@@ -32,12 +32,19 @@
     <Nunit Assemblies="$(BuildDir)\TwitterFriendshipTracker.Tests.dll" ToolPath="util\nunit"/>
   </Target>
   <Target Name="Package" DependsOnTargets="Rebuild;Test">
-	<ItemGroup>
-      <ZipFiles Include="$(BuildDir)twitter-tracker.exe"/>
+    <ItemGroup>
+      <MergeFiles Include="$(BuildDir)twitter-tracker.exe"/>
+      <MergeFiles Include="$(BuildDir)Interop.TaskScheduler.dll"/>
     </ItemGroup>
-
-	<Copy SourceFiles ="@(ZipFiles)" DestinationFolder="$(PackageDir)" />
-    <Zip Files="@(ZipFiles)" ZipFileName="$(PackageDir)\twitter-tracker.zip" WorkingDirectory="$(BuildDir)" />
+    
+    <MakeDir Directories="$(BuildDir)\temp"/>
+    <ILMerge OutputFile="$(BuildDir)\temp\twitter-tracker.exe"
+      InputAssemblies="@(MergeFiles)"
+      ToolPath="util\ilmerge"
+      LogFile="" Internalize="true"
+       />
+    <Copy SourceFiles ="$(BuildDir)\temp\twitter-tracker.exe" DestinationFolder="$(PackageDir)" />
+    <Zip Files="$(BuildDir)\temp\twitter-tracker.exe" ZipFileName="$(PackageDir)\twitter-tracker.zip" WorkingDirectory="$(BuildDir)\temp" />
   </Target>
   <Target Name="Integrate" DependsOnTargets="Package">
   </Target>
