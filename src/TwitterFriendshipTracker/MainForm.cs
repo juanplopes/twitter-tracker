@@ -21,6 +21,7 @@ namespace TwitterFriendshipTracker
             InitializeComponent();
             history = loader.Load();
             UpdateList();
+            VerifyScheduled();
         }
 
         private void UpdateList()
@@ -96,6 +97,23 @@ namespace TwitterFriendshipTracker
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void VerifyScheduled()
+        {
+            ScheduleButton.Visible = !new Scheduler().IsScheduled;
+        }
+
+        private void ScheduleButton_Click(object sender, EventArgs e)
+        {
+            string message = "Do you wish to create a scheduled task to update this data automatically?";
+            var scheduler = new Scheduler();
+           
+            if (MessageBox.Show(message, "Scheduler", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                scheduler.ScheduleThis();
+            }
+            VerifyScheduled();
         }
 
     }

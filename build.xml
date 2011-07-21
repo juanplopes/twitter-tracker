@@ -37,7 +37,8 @@
 	<Copy SourceFiles ="@(ZipFiles)" DestinationFolder="$(PackageDir)" />
     <Zip Files="@(ZipFiles)" ZipFileName="$(PackageDir)\twitter-tracker.zip" WorkingDirectory="$(BuildDir)" />
   </Target>
-  
+  <Target Name="Integrate" DependsOnTargets="Package">
+  </Target>
   <Target Name="Test" DependsOnTargets="Build">
     <Nunit Assemblies="$(BuildDir)\TwitterFriendshipTracker.Tests.dll" ToolPath="util\nunit"/>
   </Target>

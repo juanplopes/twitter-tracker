@@ -51,6 +51,12 @@
       <DependentUpon>HistoryEntryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Infra\HistoryLoader.cs" />
+    <Compile Include="Infra\Scheduler.cs" />
+    <Compile Include="Infra\TaskXml.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskXml.resx</DependentUpon>
+    </Compile>
     <Compile Include="Logic\UserHistoryCollection.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -72,6 +78,10 @@
     <Compile Include="Logic\Relative.cs" />
     <EmbeddedResource Include="HistoryEntryForm.resx">
       <DependentUpon>HistoryEntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Infra\TaskXml.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TaskXml.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -95,6 +105,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="TaskScheduler">
+      <Guid>{E34CB9F1-C7F7-424C-BE29-027DCC09363A}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Daily.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
