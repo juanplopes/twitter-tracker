@@ -28,8 +28,10 @@
   <Target Name="Rebuild">
     <CallTarget Targets="Clean; Build"></CallTarget>
   </Target>
-  
-  <Target Name="Package" DependsOnTargets="Rebuild">
+  <Target Name="Test" DependsOnTargets="Build">
+    <Nunit Assemblies="$(BuildDir)\TwitterFriendshipTracker.Tests.dll" ToolPath="util\nunit"/>
+  </Target>
+  <Target Name="Package" DependsOnTargets="Rebuild;Test">
 	<ItemGroup>
       <ZipFiles Include="$(BuildDir)twitter-tracker.exe"/>
     </ItemGroup>
@@ -39,7 +41,5 @@
   </Target>
   <Target Name="Integrate" DependsOnTargets="Package">
   </Target>
-  <Target Name="Test" DependsOnTargets="Build">
-    <Nunit Assemblies="$(BuildDir)\TwitterFriendshipTracker.Tests.dll" ToolPath="util\nunit"/>
-  </Target>
+
 </Project>
