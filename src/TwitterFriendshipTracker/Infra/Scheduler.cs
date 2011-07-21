@@ -46,7 +46,8 @@ namespace TwitterFriendshipTracker.Infra
 
         public void ScheduleThis()
         {
-            var xml = string.Format(TaskXml.Daily, MyLocation, "update");
+            var location = MyLocation;
+            var xml = string.Format(TaskXml.Daily, location, "update");
 
             foreach (IRegisteredTask task in folder.GetTasks(0))
                 folder.DeleteTask(task.Name, 0);
