@@ -17,9 +17,18 @@ namespace TwitterFriendshipTracker.Logic
 
         public string UserLookup(IEnumerable<long> ids)
         {
-            var parameter = string.Join(",", ids.Select(x => x.ToString()).ToArray());
-
-            return client.DownloadString(string.Format("http://api.twitter.com/1/users/lookup.xml?user_id={0}", parameter));
+            var stringIds = ids.Select(x => x.ToString()).ToArray();
+            var parameter = string.Join(",", stringIds);
+            try
+            {
+                return client.DownloadString(string.Format("http://api.twitter.com/1/users/lookup.xml?user_id={0}", parameter));
+            }
+            catch (WebException e)
+            {
+                if (e.Message.Contains("404"))
+                    return "<any></any>";
+                throw;
+            }
         }
     }
 }

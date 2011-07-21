@@ -49,10 +49,12 @@ namespace TwitterFriendshipTracker
                 if (entry.SomethingHappened)
                     new HistoryEntryForm(entry).ShowDialog();
             }
+#if !DEBUG
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+#endif
             finally
             {
                 ResultsGrid.Visible = true;
