@@ -26,10 +26,10 @@ namespace TwitterFriendshipTracker.Infra
                 {
                     history[user].Update(parser, DateTime.Now);
                 }
-                catch (Exception e) { last = e; }
+                catch (Exception e) { last = new InvalidOperationException("Error updating " + user, e); }
             }
             Save(history);
-            if (last != null) throw last;
+            //if (last != null) throw last;
             return history;
         }
 
