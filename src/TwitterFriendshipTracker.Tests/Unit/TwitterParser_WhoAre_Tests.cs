@@ -48,6 +48,22 @@ namespace TwitterFriendshipTracker.Tests.Unit
         }
 
         [Test]
+        public void can_parse_who_are_with_1_user_with_followers_count()
+        {
+            var ids = new long[] { 42 };
+            var twitter = new Mock<ITwitter>();
+            twitter.Setup(x => x.UserLookup(ids)).Returns(
+                @"<users>
+                    <user><id>42</id><name>Ford Prefect</name><screen_name>ford42</screen_name><followers_count>421</followers_count><friends_count>422</friends_count></user>
+                </users>");
+
+            var parser = new TwitterParser(twitter.Object);
+            parser.WhoAre(ids).Should().Have.SameSequenceAs(new UserProfile(42, "Ford Prefect", "ford42", 421, 422));
+
+            twitter.VerifyAll();
+        }
+
+        [Test]
         public void can_parse_who_are_with_2_users()
         {
             var ids = new long[] { 42, 43 };

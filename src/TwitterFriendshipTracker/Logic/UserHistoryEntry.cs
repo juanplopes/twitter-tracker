@@ -13,17 +13,24 @@ namespace TwitterFriendshipTracker.Logic
 
         IList<UserProfile> newFollowers;
         IList<UserProfile> lostFollowers;
-        int followerCount;
+        long followerCount;
 
-        public IEnumerable<UserProfile> NewFollowers { get { return newFollowers; } }
-        public IEnumerable<UserProfile> LostFollowers { get { return lostFollowers; } }
+        public IEnumerable<UserProfile> NewFollowers { get { return newFollowers ?? new UserProfile[0]; } }
+        public IEnumerable<UserProfile> LostFollowers { get { return lostFollowers ?? new UserProfile[0]; } }
 
-        public int FollowerCount { get { return followerCount; } }
-        public int NewFollowersCount { get { return newFollowers.Count; } }
-        public int LostFollowersCount { get { return lostFollowers.Count; } }
-        public bool HasNewFolloers { get { return NewFollowersCount > 0; } }
+        public long NetworkRaise { get { return NewFollowers.Sum(x => x.Followers); } }
+        public long NetworkLoss { get { return LostFollowers.Sum(x => x.Followers); } }
+
+        public long FollowerCount { get { return followerCount; } }
+        public long NewFollowersCount { get { return NewFollowers.Count(); } }
+        public long LostFollowersCount { get { return LostFollowers.Count(); } }
+        public bool HasNewFollowers { get { return NewFollowersCount > 0; } }
         public bool HasLostFollowers { get { return LostFollowersCount > 0; } }
-        public bool SomethingHappened { get { return HasNewFolloers || HasLostFollowers; } }
+        public bool SomethingHappened { get { return HasNewFollowers || HasLostFollowers; } }
+
+        public string FormattedRaise { get { return string.Format("+{0} ({1})", NewFollowersCount, NetworkRaise); } }
+        public string FormattedLoss { get { return string.Format("-{0} ({1})", LostFollowersCount, NetworkLoss); } }
+
 
         public UserHistoryEntry(DateTime date, IList<UserProfile> newFollowers, IList<UserProfile> lostFollowers, int followerCount) : this()
         {

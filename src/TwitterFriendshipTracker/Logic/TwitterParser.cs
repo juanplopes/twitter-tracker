@@ -32,13 +32,26 @@ namespace TwitterFriendshipTracker.Logic
             return theseUsers.BatchAggregate(maxPerRequest).SelectMany(users =>
             {
                 CheckRequestCount(count++);
-                
+
                 var xml = twitter.UserLookup(users);
                 var doc = XDocument.Parse(xml);
 
                 return doc.Descendants("user").Select(x =>
-                    new UserProfile(long.Parse(x.Element("id").Value), x.Element("name").Value, x.Element("screen_name").Value));
+                    new UserProfile(
+                        Long(x.Element("id")),
+                        x.Element("name").Value,
+                        x.Element("screen_name").Value,
+                        Long(x.Element("followers_count")),
+                        Long(x.Element("friends_count"))));
             });
+        }
+
+        private long Long(XElement element)
+        {
+            if (element != null)
+                return long.Parse(element.Value);
+            else
+                return 0;
         }
 
         private void CheckRequestCount(int count)

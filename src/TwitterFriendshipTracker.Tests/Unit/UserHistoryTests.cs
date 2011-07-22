@@ -75,6 +75,22 @@ namespace TwitterFriendshipTracker.Tests.Unit
         }
 
         [Test]
+        public void can_calculate_network_grow()
+        {
+            var entry = new UserHistoryEntry(DateTime.Now, new[] { new UserProfile(10, "asd", "qwe", 10, 5) }, new[] { new UserProfile(10, "asd", "qwe", 11, 5) }, 250);
+            entry.NetworkRaise.Should().Be(10);
+            entry.NetworkLoss.Should().Be(11);
+        }
+
+        [Test]
+        public void can_calculate_network_grow_for_empty_history()
+        {
+            var entry = new UserHistoryEntry();
+            entry.NetworkRaise.Should().Be(0);
+            entry.NetworkLoss.Should().Be(0);
+        }
+
+        [Test]
         public void should_be_serializable()
         {
             var entries = new[] { new UserHistoryEntry(new DateTime(), new[] { new UserProfile(2, "", "") }, new UserProfile[0], 0) };

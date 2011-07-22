@@ -33,6 +33,18 @@ namespace TwitterFriendshipTracker.Logic
             }
         }
 
+        public void UpdateAll(ITwitterParser parser, DateTime date)
+        {
+            Exception last = null;
+            foreach (var user in users.Values)
+                try
+                {
+                    user.Update(parser, date);
+                }
+                catch (Exception e) { last = new InvalidOperationException("Error updating " + user, e); }
+            if (last != null) throw last;
+        }
+
         static string NormalizeUsername(string user)
         {
             if (user.StartsWith("@")) user = user.Substring(1);

@@ -91,7 +91,6 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ResultsGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ResultsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.ResultsGrid.ColumnHeadersVisible = false;
             this.ResultsGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dateDataGridViewTextBoxColumn,
             this.followerCountDataGridViewTextBoxColumn,
@@ -112,6 +111,7 @@
             this.ResultsGrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.ResultsGrid.RowHeadersVisible = false;
             this.ResultsGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ResultsGrid.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.ResultsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -229,11 +229,11 @@
             // 
             // newFollowersCountDataGridViewTextBoxColumn
             // 
-            this.newFollowersCountDataGridViewTextBoxColumn.DataPropertyName = "NewFollowersCount";
+            this.newFollowersCountDataGridViewTextBoxColumn.DataPropertyName = "FormattedRaise";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle4.Format = "new followers: 0";
+            dataGridViewCellStyle4.Format = "new followers: {0}";
             dataGridViewCellStyle4.NullValue = null;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.newFollowersCountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
@@ -243,7 +243,7 @@
             // 
             // lostFollowersCountDataGridViewTextBoxColumn
             // 
-            this.lostFollowersCountDataGridViewTextBoxColumn.DataPropertyName = "LostFollowersCount";
+            this.lostFollowersCountDataGridViewTextBoxColumn.DataPropertyName = "FormattedLoss";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Maroon;

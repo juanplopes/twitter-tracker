@@ -19,17 +19,13 @@ namespace TwitterFriendshipTracker.Infra
         public UserHistoryCollection UpdateAll(ITwitterParser parser)
         {
             var history = Load();
-            Exception last = null;
-            foreach (var user in history.Users)
+            try
             {
-                try
-                {
-                    history[user].Update(parser, DateTime.Now);
-                }
-                catch (Exception e) { last = new InvalidOperationException("Error updating " + user, e); }
+                history.UpdateAll(parser, DateTime.Now);
             }
+            catch (InvalidOperationException) { }
+
             Save(history);
-            //if (last != null) throw last;
             return history;
         }
 

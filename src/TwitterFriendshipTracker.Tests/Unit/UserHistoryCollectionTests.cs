@@ -107,5 +107,42 @@ namespace TwitterFriendshipTracker.Tests.Unit
             var otherUsers = UserHistoryTests.RoundTrip(users);
             otherUsers.Users.Should().Have.SameSequenceAs(users.Users);
         }
+
+        [Test]
+        public void can_update_all()
+        {
+            var parser = new Mock<ITwitterParser>();
+            parser.Setup(x => x.FollowersFor("asd")).Returns(new long[0]);
+            parser.Setup(x => x.FollowersFor("qwe")).Returns(new long[0]);
+
+            var users = new UserHistoryCollection();
+            users["asd"].ToString();
+            users["qwe"].ToString();
+            users["asd"].ToString();
+
+            var date = DateTime.Now;
+            users.UpdateAll(parser.Object, date);
+            users.LastUser.Should().Be("asd");
+
+            parser.VerifyAll();
+        }
+
+        [Test]
+        public void can_update_all_even_with_exception()
+        {
+            var parser = new Mock<ITwitterParser>();
+            parser.Setup(x => x.FollowersFor("asd")).Throws<Exception>();
+            parser.Setup(x => x.FollowersFor("qwe")).Returns(new long[0]);
+
+            var users = new UserHistoryCollection();
+            users["asd"].ToString();
+            users["qwe"].ToString();
+            users["asd"].ToString();
+
+            var date = DateTime.Now;
+            Executing.This(() => users.UpdateAll(parser.Object, date)).Should().Throw<InvalidOperationException>();
+
+            parser.VerifyAll();
+        }
     }
 }
