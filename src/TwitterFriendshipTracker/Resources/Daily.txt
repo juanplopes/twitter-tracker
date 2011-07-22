@@ -16,7 +16,6 @@
   </Triggers>
   <Principals>
     <Principal id="Author">
-      <UserId>JUANLOPES-PC\JuanLopes</UserId>
       <LogonType>S4U</LogonType>
       <RunLevel>LeastPrivilege</RunLevel>
     </Principal>
