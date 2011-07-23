@@ -18,8 +18,8 @@ namespace TwitterFriendshipTracker
             InitializeComponent();
             
             WhatHappenedLabel.Text = string.Format("{0}, followers: {1}", entry.Date, entry.FollowerCount);
-            NewFollowersLabel.Text = string.Format("New followers: {0}", entry.NewFollowersCount);
-            LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.LostFollowersCount);
+            NewFollowersLabel.Text = string.Format("New followers: {0}", entry.FormattedRaise);
+            LostFollowersLabel.Text = string.Format("Lost followers: {0}", entry.FormattedLoss);
             NewList.DataSource = entry.NewFollowers;
             NewList.SelectedIndex = -1;
             LostList.DataSource = entry.LostFollowers;
