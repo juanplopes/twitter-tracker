@@ -66,12 +66,5 @@ namespace TwitterFriendshipTracker.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-        
-        internal static System.Drawing.Icon Main {
-            get {
-                object obj = ResourceManager.GetObject("Main", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
     }
 }
